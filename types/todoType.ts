@@ -10,8 +10,9 @@ export type TodoItem = {
   description?: string
   completed: boolean
   priority: Priority
-  dueDate?: string
+  dueDate?: Date
   tags?: string[]
+  todoListId: string
 }
 
 export type TodoList = {
