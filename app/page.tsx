@@ -1,23 +1,11 @@
-"use client"
-import { useState, useEffect } from "react"
 import Button from "components/Button"
 import ListItem from "components/ListItem"
 import { getTodoLists } from "api/todoListAPI"
-import type { TodoList } from "types/todoType"
 
-const TodoApp = () => {
-  const [todoLists, setTodoList] = useState<TodoList[] | null>(null)
-
-  useEffect(() => {
-    const fetch = async () => {
-      const response = await getTodoLists()
-      if (response?.data) {
-        setTodoList(response.data)
-        console.log(response.data)
-      }
-    }
-    fetch()
-  }, [])
+const TodoApp = async () => {
+  const response = await getTodoLists()
+  if (!response?.data) return <div>No data</div>
+  const todoLists = response?.data
 
   return (
     <div className="h-screen bg-light-bg">
