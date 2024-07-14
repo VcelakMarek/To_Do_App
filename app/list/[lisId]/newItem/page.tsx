@@ -4,8 +4,8 @@ type Props = {
   params: { lisId: string }
 }
 
-const Editor = async ({ params }: Props) => {
+const NewItem = async ({ params }: Props) => {
   return <TodoForm listId={params.lisId} />
 }
 
-export default Editor
+export default NewItem
