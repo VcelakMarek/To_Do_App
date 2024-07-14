@@ -27,6 +27,11 @@ const TodoList = async ({ params }: Props) => {
             </div>
           </header>
           <div className="mt-16 grid place-items-center">
+            <div className="mb-2 flex w-[65%] items-start gap-24 pl-[85px]">
+              <h4>Name</h4>
+              <h4>Due Date</h4>
+              <h4>Priority</h4>
+            </div>
             {todoItems?.map((todoItem) => (
               <TodoItem itemData={todoItem} key={todoItem.id} />
             ))}
