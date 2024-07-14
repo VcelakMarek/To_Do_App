@@ -17,6 +17,17 @@ h5 {
 h6 {
   @apply text-xl font-medium text-light-blue;
 }
+input[type="text"],
+[type="number"],
+[type="select"],
+[type="date"],
+select {
+  @apply mb-5 mt-2.5 h-12 rounded-md border border-light-grey px-5 text-sm font-bold text-black outline-purple active:border-purple;
+}
+input[type="checkbox"] {
+  @apply cursor-pointer appearance-none rounded-[2px] border-[px] border-transparent bg-light-grey text-purple hover:border-purple focus:ring-transparent;
+}
+
 @tailwind components;
 @tailwind utilities;
 
