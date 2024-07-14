@@ -17,7 +17,7 @@ const TodoApp = async () => {
               <h2>There are {todoLists?.length} to-do Lists</h2>
             </div>
             <div className="flex gap-10">
-              <Button color="purple" addNew>
+              <Button color="purple" link="/newList">
                 New Todo List
               </Button>
             </div>
