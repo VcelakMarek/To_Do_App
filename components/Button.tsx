@@ -1,4 +1,6 @@
 import { ReactNode } from "react"
+import Link from "next/link"
+import Image from "next/image"
 
 type Props = {
   color?: "red" | "purple" | "grey" | "darkBlue" | "transparent"
@@ -14,6 +16,7 @@ type Props = {
   submit?: boolean
   full?: boolean
   invisible?: boolean
+  link?: string
 }
 
 const backgroundColor = {
@@ -45,6 +48,7 @@ const Button = ({
   submit,
   full,
   invisible,
+  link,
 }: Props) => {
   const border = !dropDown && "rounded-full"
   const dimensions = !icon
@@ -82,9 +86,11 @@ const Button = ({
     return (
       <button className={todoClasses.join(" ")} onClick={onClick}>
         <div className="grid h-8 w-8 place-items-center rounded-full bg-white">
-          <img
+          <Image
             className="pl-px pt-px"
-            src="/todo_app/assets/icon-plus.svg"
+            src="public/icon-plus.svg"
+            width={500}
+            height={500}
             alt="plus"
           />
         </div>
@@ -103,6 +109,14 @@ const Button = ({
         />
         <h3 className="mt-0.5 hover:text-grey">Go back</h3>
       </button>
+    )
+  }
+
+  if (link) {
+    return (
+      <Link href={link} className={baseClasses.join(" ")}>
+        {children}
+      </Link>
     )
   }
 
