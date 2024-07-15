@@ -10,8 +10,6 @@ export type TodoItem = {
   description?: string
   completed: boolean
   priority: Priority
-  dueDate?: Date
-  tags?: string[]
   todoListId: string
 }
 
