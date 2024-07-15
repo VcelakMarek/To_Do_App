@@ -21,7 +21,7 @@
       "types/*": ["./types/*"],
       "components/*": ["./components/*"],
       "connectors/*": ["./connectors/*"],
-      "api/*": ["./app/api/*"]
+      "api/*": ["./api/*"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
