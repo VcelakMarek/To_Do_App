@@ -1,7 +1,7 @@
 "use client"
 import { Field } from "react-final-form"
 
-type Size = "small" | "medium" | "large"
+type Size = "small" | "large"
 
 type Props = {
   size?: Size
@@ -13,9 +13,8 @@ type Props = {
 }
 
 const inputSize: { [key in Size]: string } = {
-  small: "w-[120px] sm:w-[240px]",
-  medium: "w-[200px] sm:w-[300px]",
-  large: "w-[250px] sm:w-[504px]",
+  small: "w-[120px]",
+  large: "md:w-[250px] w-[504px]",
 }
 
 const FormInput = ({

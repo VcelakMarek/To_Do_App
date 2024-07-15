@@ -22,6 +22,10 @@ const config: Config = {
         "black2":"var(--black2)",
         "light-bg":"var(--light-bg)"
       },
+      screens: {
+        md: { max: "900px" },  
+        sm: { max: "600px" },
+      },
     },
   },
   plugins: [require("@tailwindcss/forms")],

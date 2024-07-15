@@ -23,10 +23,11 @@ const TodoItem = ({ itemData }: Props) => {
 
   const handleDelete = async () => {
     await deleteItem(itemData.todoListId, itemData.id)
+    window.location.reload()
   }
 
   return (
-    <div className="mb-4 flex h-[72px] w-[65%] items-center justify-around rounded-lg border-[1.5px] border-transparent bg-white px-[2%] drop-shadow hover:border-[1.5px]">
+    <div className="mb-4 flex h-[72px] w-[65%] items-center justify-around rounded-lg border-[1.5px] border-transparent bg-white px-[2%] drop-shadow hover:border-[1.5px] sm:h-[300px] md:h-[200px] md:flex-wrap">
       <input
         id={itemData.id}
         type="checkbox"

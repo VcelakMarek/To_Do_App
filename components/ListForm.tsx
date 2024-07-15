@@ -19,7 +19,7 @@ const ListForm = () => {
   }
 
   return (
-    <div className="bg-white-background grid h-full w-screen place-items-center p-10">
+    <div className="bg-white-background grid h-full w-screen place-items-center pt-10">
       <h1>New List</h1>
       <Form
         id="newList"

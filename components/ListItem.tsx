@@ -10,8 +10,6 @@ type Props = {
 }
 
 const ListItem = ({ listData }: Props) => {
-  console.log(listData.name)
-
   const handleDelete = async () => {
     await deleteList(listData.id)
 
@@ -21,7 +19,7 @@ const ListItem = ({ listData }: Props) => {
   return (
     <Link
       href={`/list/${listData.id}`}
-      className="mb-4 flex h-[72px] w-[65%] items-center justify-between rounded-lg border-[1.5px] border-transparent bg-white px-[2%] drop-shadow hover:border-[1.5px] hover:border-[#7C5DFA]"
+      className="mb-4 flex h-[72px] w-[65%] items-center justify-between rounded-lg border-[1.5px] border-transparent bg-white px-[2%] drop-shadow hover:border-[1.5px] hover:border-[#7C5DFA] sm:w-11/12"
     >
       <h3>{listData.name}</h3>
       <Button
