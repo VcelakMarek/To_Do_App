@@ -1,5 +1,5 @@
-import { getItem } from "api/todoItemAPI"
 import TodoForm from "components/TodoForm"
+import { getItem } from "api/todoItemAPI"
 
 type Props = {
   params: { id: string }
@@ -7,10 +7,12 @@ type Props = {
 
 const Editor = async ({ params }: Props) => {
   const response = await getItem(params.id)
-  if (!response?.data) return <div>No data</div>
-  const todoItem = response?.data
 
-  return <TodoForm formValues={todoItem}></TodoForm>
+  if (!response?.data) return <div>No data</div>
+
+  const todoItem = response.data
+
+  return <TodoForm formValues={todoItem} />
 }
 
 export default Editor
