@@ -1,6 +1,9 @@
+"use client"
 import React from "react"
 import Link from "next/link"
-import { TodoList } from "types/todoType"
+import Button from "components/Button"
+import { deleteList } from "api/todoListAPI"
+import type { TodoList } from "types/todoType"
 
 type Props = {
   listData: TodoList
@@ -9,12 +12,28 @@ type Props = {
 const ListItem = ({ listData }: Props) => {
   console.log(listData.name)
 
+  const handleDelete = async () => {
+    await deleteList(listData.id)
+
+    window.location.reload()
+  }
+
   return (
     <Link
       href={`/list/${listData.id}`}
-      className="mb-4 flex h-[72px] w-[65%] items-center justify-around rounded-lg border-[1.5px] border-transparent bg-white px-[2%] drop-shadow hover:border-[1.5px] hover:border-[#7C5DFA]"
+      className="mb-4 flex h-[72px] w-[65%] items-center justify-between rounded-lg border-[1.5px] border-transparent bg-white px-[2%] drop-shadow hover:border-[1.5px] hover:border-[#7C5DFA]"
     >
       <h3>{listData.name}</h3>
+      <Button
+        color="red"
+        onClick={(e) => {
+          e.stopPropagation()
+          e.preventDefault()
+          handleDelete()
+        }}
+      >
+        Delete
+      </Button>
     </Link>
   )
 }
