@@ -1,16 +1,18 @@
 "use client"
 import { Field } from "react-final-form"
 
+type Size = "small" | "medium" | "large"
+
 type Props = {
-  size?: "small" | "medium" | "large"
+  size?: Size
   inputName?: string
   id: string
-  inputType?: "text" | "number" | "select" | "date"
+  inputType?: "text" | "number" | "select"
   inputPlaceholder?: string
   selectValues?: string[]
 }
 
-const inputSize: { [key: string]: string } = {
+const inputSize: { [key in Size]: string } = {
   small: "w-[120px] sm:w-[240px]",
   medium: "w-[200px] sm:w-[300px]",
   large: "w-[250px] sm:w-[504px]",
@@ -24,7 +26,6 @@ const FormInput = ({
   inputPlaceholder,
   selectValues,
 }: Props) => {
-  console.log(selectValues)
   if (inputType === "select") {
     return (
       <label htmlFor={id}>
@@ -39,6 +40,7 @@ const FormInput = ({
       </label>
     )
   }
+
   return (
     <label htmlFor={id}>
       <Field name={id}>
