@@ -1,23 +1,21 @@
 "use client"
-import { FC } from "react"
 import { Form } from "react-final-form"
-import { FormApi } from "final-form"
 import { useRouter } from "next/navigation"
-import { addList } from "api/todoListAPI"
 import FormInput from "components/FormInput"
 import Button from "components/Button"
+import { addList } from "api/todoListAPI"
 import type { TodoList } from "types/todoType"
 
-type Props = {
-  form?: FormApi<FormData>
-}
+const ListForm = () => {
+  const router = useRouter()
 
-const ListForm: FC<Props> = () => {
-  const { push } = useRouter()
+  const onSubmit = async (values: TodoList) => {
+    await addList(values)
 
-  const onSubmit = (values: TodoList) => {
-    addList(values)
-    push("/")
+    router.back()
+    setTimeout(() => {
+      router.refresh()
+    }, 200)
   }
 
   return (
@@ -30,7 +28,7 @@ const ListForm: FC<Props> = () => {
         render={({ handleSubmit }) => (
           <form onSubmit={handleSubmit}>
             <main className="bg-white-background flex h-screen w-screen flex-wrap pt-10">
-              <section className="mx-auto flex w-3/5 flex-col gap-1">
+              <section className="mx-auto flex flex-col gap-1">
                 <FormInput inputName="Name" id="name" size="large" />
                 <div>
                   <Button submit color="purple">
