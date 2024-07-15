@@ -1,7 +1,7 @@
-import type { Priority as PriorityType } from "types/todoType"
+import { Priority as PriorityEnum } from "types/todoType"
 
 type PrioritiesTypes = {
-  [key: string]: string[]
+  [key in PriorityEnum]: string[]
 }
 
 const priorities: PrioritiesTypes = {
@@ -9,7 +9,12 @@ const priorities: PrioritiesTypes = {
   Medium: ["bg-[#FF8F00]", "text-[#FF8F00]"],
   High: ["bg-[#D53333]", "text-[#CC0000]"],
 }
-const Priority = ({ priority }: PriorityType) => {
+
+type Props = {
+  priority: PriorityEnum
+}
+
+const Priority = ({ priority }: Props) => {
   const color = priorities[priority]
 
   return (
