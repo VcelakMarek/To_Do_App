@@ -1,9 +1,9 @@
 "use client"
 import { useState } from "react"
 import { updateItem, deleteItem } from "api/todoItemAPI"
+import Button from "components/Button"
+import Priority from "components/Priority"
 import type { TodoItem } from "types/todoType"
-import Button from "./Button"
-import Priority from "./Priority"
 
 type Props = {
   itemData: TodoItem
@@ -18,10 +18,11 @@ const TodoItem = ({ itemData }: Props) => {
     await updateItem(itemData.id, {
       completed: updatedIsChecked,
     })
+    window.location.reload()
   }
 
   const handleDelete = async () => {
-    await deleteItem(itemData.id)
+    await deleteItem(itemData.todoListId, itemData.id)
   }
 
   return (
@@ -32,8 +33,8 @@ const TodoItem = ({ itemData }: Props) => {
         checked={isChecked}
         onChange={handleChange}
       />
-      <h4 className="basis-2/12">{itemData.title}</h4>
-      <h2 className="basis-2/12">Due {itemData.dueDate}</h2>
+      <h4 className="basis-2/12 text-center">{itemData.title}</h4>
+      <h2 className="basis-3/12 text-center">{itemData.description}</h2>
       <Priority priority={itemData.priority} />
       <div className="flex basis-2/12 items-center gap-4">
         <Button
@@ -43,7 +44,6 @@ const TodoItem = ({ itemData }: Props) => {
           Edit
         </Button>
         <Button color="red" onClick={handleDelete}>
-          {" "}
           Delete
         </Button>
       </div>
