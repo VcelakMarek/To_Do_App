@@ -16,7 +16,7 @@ export const POST = async <T>(
 
 export const PUT = async <T>(
   url: string,
-  data: TodoList | TodoItem,
+  data: Partial<TodoList | TodoItem>,
 ): Promise<AxiosResponse<T>> => {
   return axios({ method: "PUT", baseURL: BASE_URL, url, data })
 }
