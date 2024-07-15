@@ -3,11 +3,11 @@ import TodoItem from "components/TodoItem"
 import { getItems } from "api/todoItemAPI"
 
 type Props = {
-  params: { lisId: string }
+  params: { listId: string }
 }
 
 const TodoList = async ({ params }: Props) => {
-  const response = await getItems(params.lisId)
+  const response = await getItems(params.listId)
 
   if (!response?.data) return <div>No data</div>
 
@@ -23,7 +23,7 @@ const TodoList = async ({ params }: Props) => {
               <h2>There are {todoItems.length} to-do's</h2>
             </div>
             <div className="flex gap-10">
-              <Button color="purple" link={`/list/${params.lisId}/newItem`}>
+              <Button color="purple" link={`/list/${params.listId}/newItem`}>
                 New Todo
               </Button>
             </div>

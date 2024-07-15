@@ -1,11 +1,11 @@
 import TodoForm from "components/TodoForm"
 
 type Props = {
-  params: { lisId: string }
+  params: { listId: string }
 }
 
 const NewItem = async ({ params }: Props) => {
-  return <TodoForm listId={params.lisId} />
+  return <TodoForm listId={params.listId} />
 }
 
 export default NewItem
