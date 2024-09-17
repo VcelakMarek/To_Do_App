@@ -24,7 +24,7 @@ const TodoList = async ({ params }: Props) => {
             </div>
             <div className="flex gap-10">
               <Button color="purple" link={`/list/${params.listId}/newItem`}>
-                New Todo
+                New To Do
               </Button>
             </div>
           </header>

@@ -15,12 +15,12 @@ const TodoApp = async () => {
         <main className="flex w-screen flex-col">
           <header className="w-800px mt-16 flex h-14 flex-row items-start justify-around">
             <div>
-              <h1>Todo Lists</h1>
+              <h1>To Do Lists</h1>
               <h2>There are {todoLists.length} to-do Lists</h2>
             </div>
             <div className="flex gap-10">
               <Button color="purple" link="/newList">
-                New Todo List
+                New To Do List
               </Button>
             </div>
           </header>
