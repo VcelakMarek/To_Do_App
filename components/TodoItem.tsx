@@ -4,6 +4,7 @@ import { updateItem, deleteItem } from "api/todoItemAPI"
 import Button from "components/Button"
 import Priority from "components/Priority"
 import type { TodoItem } from "types/todoType"
+import revalidate from "utils/actions"
 
 type Props = {
   itemData: TodoItem
@@ -18,12 +19,12 @@ const TodoItem = ({ itemData }: Props) => {
     await updateItem(itemData.id, {
       completed: updatedIsChecked,
     })
-    window.location.reload()
+    revalidate()
   }
 
   const handleDelete = async () => {
     await deleteItem(itemData.todoListId, itemData.id)
-    window.location.reload()
+    revalidate()
   }
 
   return (

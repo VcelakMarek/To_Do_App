@@ -4,6 +4,7 @@ import Link from "next/link"
 import Button from "components/Button"
 import { deleteList } from "api/todoListAPI"
 import type { TodoList } from "types/todoType"
+import revalidate from "utils/actions"
 
 type Props = {
   listData: TodoList
@@ -13,7 +14,7 @@ const ListItem = ({ listData }: Props) => {
   const handleDelete = async () => {
     await deleteList(listData.id)
 
-    window.location.reload()
+    revalidate()
   }
 
   return (

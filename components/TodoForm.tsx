@@ -7,6 +7,7 @@ import FormInput from "components/FormInput"
 import Button from "components/Button"
 import { updateItem, addItem } from "api/todoItemAPI"
 import type { TodoItem } from "types/todoType"
+import revalidate from "utils/actions"
 
 type Props = {
   form?: FormApi<FormData>
@@ -25,14 +26,13 @@ const TodoForm: FC<Props> = ({ formValues, listId }) => {
       priority: values.priority ?? "Low",
       todoListId: listId ?? values.todoListId,
     }
-
     formValues
       ? await updateItem(formValues.id, values)
       : await addItem(newItem)
-    router.back()
-    setTimeout(() => {
-      router.refresh()
-    }, 200)
+
+    const listUrl = `/list/${newItem.todoListId}`
+    revalidate(listUrl)
+    router.replace(listUrl)
   }
 
   return (
@@ -60,7 +60,7 @@ const TodoForm: FC<Props> = ({ formValues, listId }) => {
                 />
 
                 <div>
-                  <Button submit color="purple">
+                  <Button type="submit" color="purple">
                     {formValues ? "Save changes" : "Add Item"}
                   </Button>
                 </div>
