@@ -1,22 +1,19 @@
-import { ReactNode } from "react"
+import { ButtonHTMLAttributes, ReactNode } from "react"
 import Link from "next/link"
-import Image from "next/image"
 
 type Props = {
   color?: "red" | "purple" | "grey" | "transparent"
   children?: ReactNode
-  dropDown?: boolean
-  onClick?: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void
+  isDropdown?: boolean
   DropDownMenu?: ReactNode
-  goBack?: boolean
-  icon?: boolean
-  disabled?: boolean
+  canGoBack?: boolean
+  hasIcon?: boolean
   isOpen?: boolean
-  submit?: boolean
   full?: boolean
   invisible?: boolean
   link?: string
-}
+} & ButtonHTMLAttributes<HTMLButtonElement>
+// ☝🏻 Contains all the attributes of a button element (onClick, type,...)
 
 const backgroundColor = {
   red: "bg-red hover:bg-red-hover",
@@ -35,20 +32,19 @@ const textColor = {
 
 const Button = ({
   color = "transparent",
-  dropDown,
-  goBack,
-  onClick,
+  isDropdown,
+  canGoBack,
   children,
-  icon,
-  disabled,
+  hasIcon,
   isOpen,
-  submit,
   full,
   invisible,
   link,
+  className,
+  ...rest
 }: Props) => {
-  const border = !dropDown && "rounded-full"
-  const dimensions = !icon
+  const border = !isDropdown && "rounded-full"
+  const dimensions = !hasIcon
     ? `h-12 pl-6 pr-6 ${full ? "w-full" : null}`
     : " pl-5 pb-2"
   const text = "font-bold text-xs tracking-[1px]"
@@ -66,27 +62,22 @@ const Button = ({
   const dropDownClasses = [text, flex]
   const linkClasses = baseClasses.concat(flex)
 
-  if (dropDown) {
+  if (isDropdown) {
     return (
-      <button className={dropDownClasses.join(" ")} onClick={onClick}>
+      <button {...rest} className={dropDownClasses.join(" ")}>
         {children}
         <img
           className={isOpen ? "rotate-180 duration-500" : "duration-500"}
           src="/todo_app/assets/icon-arrow-down.svg"
           alt="arrow-down"
-        ></img>
+        />
       </button>
     )
   }
 
-  if (goBack) {
+  if (canGoBack) {
     return (
-      <button className="mb-6 flex justify-between gap-5" onClick={onClick}>
-        <img
-          src="/todo_app/assets/icon-arrow-left.svg"
-          alt="go back"
-          className="m-auto h-2"
-        />
+      <button {...rest} className="mb-6 flex justify-between gap-5">
         <h3 className="mt-0.5 hover:text-grey">Go back</h3>
       </button>
     )
@@ -101,12 +92,7 @@ const Button = ({
   }
 
   return (
-    <button
-      type={submit ? "submit" : "button"}
-      className={baseClasses.join(" ")}
-      onClick={onClick}
-      disabled={disabled}
-    >
+    <button {...rest} className={baseClasses.join(" ")}>
       {children}
     </button>
   )
